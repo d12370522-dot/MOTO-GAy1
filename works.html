@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作品展示 | Works</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav>
+        <div class="logo">My Portfolio</div>
+        <ul>
+            <li><a href="index.html">首頁</a></li>
+            <li><a href="works.html" class="active">作品頁</a></li>
+            <li><a href="about.html">關於我</a></li>
+        </ul>
+    </nav>
+
+    <section class="container">
+        <h2 class="section-title">我的作品</h2>
+        <div class="works-grid reveal">
+            <div class="work-item">
+                <img src="images/01.png" alt="作品1">
+                <div class="work-info">
+                    <h3>TUT V300 </h3>
+                    <p>這是大學專題製作的影片，藉由AI生成製作出以真人在一段爭吵過後被送到地下城的友情故事。</p>
+                </div>
+            </div>
+            <div class="work-item">
+                <img src="images/02.png" alt="作品2">
+                <div class="work-info">
+                    <h3> two punch man
+                    <p>重繪動畫《一拳超人》op加入組員各自設計創作，配上我們的歌喉製作出神級op。</p>
+                </div>
+            </div>
+            <div class="work-item">
+                <img src="images/03.png" alt="作品3">
+                <div class="work-info">
+                    <h3>阿翰的山地標準差事 </h3>
+                    <p>一步融合GTA遊戲，描述著玩家被強制捲進遊戲裡不斷死亡解救NPC的故事。</p>
+                </div>
+            </div>
+            <div class="work-item">
+                <img src="images/封面.png" alt="作品4">
+                <div class="work-info">
+                    <h3>健身少年</h3>
+                    <p>仿拍《健身少女》OP快節奏切換畫面鏡位，對其畫面角度，加上3人歌喉獻唱。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+    // --- 功能 1: 動態導覽列 ---
+
+    window.addEventListener('scroll', function() {
+        const nav = document.querySelector('nav');
+        
+        if (window.scrollY > 50) {
+            nav.classList.add('scrolled');
+        } else {
+            // 否則移除
+            nav.classList.remove('scrolled');
+        }
+    });
+
+    // --- 功能 2: 滾動觸發動畫 (Scroll Reveal) ---
+    
+    const observerOptions = {
+        root: null, 
+        threshold: 0.15 
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            
+            if (entry.isIntersecting) {
+               
+                entry.target.classList.add('active');
+               
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+   
+    document.querySelectorAll('.reveal').forEach(el => {
+        observer.observe(el);
+    });
+</script>
+</body>
+</html>

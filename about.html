@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>關於我 | About</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav>
+        <div class="logo">My Portfolio</div>
+        <ul>
+            <li><a href="index.html">首頁</a></li>
+            <li><a href="works.html">作品頁</a></li>
+            <li><a href="about.html" class="active">關於我</a></li>
+        </ul>
+    </nav>
+
+   <section class="container about-section reveal">
+        <div class="about-image">
+            <img src="images/GYA.JPG" alt="我的照片">
+        </div>
+        <div class="about-text">
+            <h2>關於我</h2>
+            <p>我是SHUNE，我是一位熱愛奇幻風格的創作者，喜歡透過攝影表達想像力。</p>
+            
+            <h3>專業技能</h3>
+            <ul>
+                <li>AE / PS</li>
+                <li>Video Editing</li>
+                <li>HTML / CSS</li>
+            </ul>
+
+            <h3>興趣愛好</h3>
+            <p>角色設計、射擊遊戲、攝影。</p>
+
+            <h3>聯絡方式</h3>
+            <p>Email: GAY@Gmail.com</p>
+        </div>
+    </section>
+    <script>
+    // --- 功能 1: 動態導覽列 ---
+   
+    window.addEventListener('scroll', function() {
+        const nav = document.querySelector('nav');
+      
+        if (window.scrollY > 50) {
+            nav.classList.add('scrolled');
+        } else {
+            // 否則移除
+            nav.classList.remove('scrolled');
+        }
+    });
+
+    // --- 功能 2: 滾動觸發動畫 (Scroll Reveal) ---
+   
+    const observerOptions = {
+        root: null,
+        threshold: 0.15 
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            // 如果元素進入視窗
+            if (entry.isIntersecting) {
+                // 加上 'active' class 來觸發 CSS 動畫
+                entry.target.classList.add('active');
+                
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    
+    document.querySelectorAll('.reveal').forEach(el => {
+        observer.observe(el);
+    });
+</script>
+</body>
+</html>
